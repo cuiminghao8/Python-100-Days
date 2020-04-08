@@ -9,4 +9,22 @@ def merge_sort(items, comp=lambda x,y : x<=y):
 
 def merge(items1, items2, comp):
     """合并两个有序的列表合并成一个有序的列表"""
-    
+    items = []
+    index1, index2 = 0,0
+    while index1 < len(items1) and index2 < len(items2):
+        if comp(items1[index1], items2[index2]):
+            items.append(items1[index1])
+            index1 += 1
+        else:
+            items.append(items2[index2])
+            index2+=1
+
+    items += items1[index1:]
+    items += items2[index2:]
+    return items
+
+list = [1,1,4,3,6,7,8,1,3,4,5,1234,16,35,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356,1,4,3,6,7,8,1,3,4,5,1234,16,356]
+def main():
+    print(merge_sort(list))
+if __name__ == "__main__":
+    main()
