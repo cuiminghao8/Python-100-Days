@@ -84,4 +84,5 @@ class RegisterForm(forms.ModelForm):
     def clean_password(self):
         password = self.cleaned_data['password']
         if len(password) < 8 or len(password) > 20:
-            pass
+            raise ValidationError('无效的密码密码长度为8-20个字符')
+        return to_md5_hex(self.cleaned_data['password'])
