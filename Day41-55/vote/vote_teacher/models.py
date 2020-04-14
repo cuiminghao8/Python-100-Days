@@ -1,17 +1,12 @@
-from django.db import models, forms
+#from django.db import models, forms
 #from PIL import Image
 #from django_thumbs.db.models import ImageWithThumbsField
-import os, datetime, uuid
+
+
+from django.db import models
 
 
 # Create your models here.
-def generate_filename(instance, filename):
-    """
-    安全考虑，生成随即文件名
-    """
-    directory_name = datetime.datetime.now().strftime('photos/%Y/%m/%d')
-    filename = uuid.uuid4().hex + os.path.splitext(filename)[-1]
-    return os.path.join(directory_name, filename)
 
 
 class Subject(models.Model):
@@ -69,20 +64,6 @@ class User(models.Model):
         verbose_name_plural = '用户'
 
 
-USERNAME_PATTERN = re.compile(r'\w{4,20}')
 
 
-class RegisterForm(forms.ModelForm):
-    repassword = forms.CharField(min_length=8, max_length=20)
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if not USERNAME_PATTERN.fullmatch(username):
-            raise ValidationError('用户名由字母，数字和下划线构成且长度为4-20个字符')
-        return username
-
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        if len(password) < 8 or len(password) > 20:
-            raise ValidationError('无效的密码密码长度为8-20个字符')
-        return to_md5_hex(self.cleaned_data['password'])
