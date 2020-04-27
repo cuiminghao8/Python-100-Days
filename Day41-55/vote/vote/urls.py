@@ -23,5 +23,7 @@ urlpatterns = [
     path('praise/', views.praise_or_criticize),
     path('criticize/', views.praise_or_criticize),
     path('register/', views.register, name='register'),
-    path('login/', views.login, name='login')
+    path('login/', views.login, name='login'),
+    path('excel/',views.export_teachers_excel),
+    path('teachers_data/',views.get_teachers_data)
 ]

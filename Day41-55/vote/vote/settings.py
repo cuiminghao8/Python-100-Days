@@ -25,7 +25,10 @@ SECRET_KEY = 'h-^!pg-6cjko0^u-ckc3m@7m!qg5cs=lg-!(_d306su9f70&ce'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+SESSION_EXPIRE_AT_CLOSE = True
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Application definition
 
 INSTALLED_APPS = [
